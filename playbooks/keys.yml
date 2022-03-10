@@ -1,0 +1,10 @@
+# keys.yml
+# https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html
+---
+  - hosts: webservers:loadbalancers
+    tasks:
+      - name: Set authorized key taken from file
+        authorized_key:
+          user: root
+          state: present
+          key: "{{ lookup('file', '/Users/ezrahill/.ssh/id_rsa.pub') }}"
